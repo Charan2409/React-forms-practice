@@ -1,0 +1,20 @@
+import { useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [selectedOption, setSelectedOption] = useState("");
+  const handleSelect = (e) => {
+    setSelectedOption(e.target.value); --> selected option from user will be updated via setSelectedOption based on onChange event.
+  };
+  return (
+    <div className="App">
+      <select value={selectedOption} onChange={handleSelect}>
+        <option value="Default">Default</option> ---> value will be tracked and the value will be updated in UI after UI interaction.
+        <option value="option 1">Option 1</option>
+        <option value="option 2">Option 2</option>
+        <option value="option 3">Option 3</option>
+      </select>
+      <p>The Selected option is : {selectedOption}</p>
+    </div>
+  );
+}
