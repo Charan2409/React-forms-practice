@@ -1,0 +1,47 @@
+import "./styles.css";
+import { useState } from "react";
+
+export default function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [inputError, setInputError] = useState();
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    if (value.length == 0 || value.length < 5) {
+      setInputError("Please enter the valid name more than 5 characters.");
+    } else {
+      setInputError(null);
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.length < 5) {
+      setInputError("Name cannot be less than 5 characters");
+    } else {
+      console.log("Name is : ", inputValue);
+    }
+    setInputValue("");
+  };
+
+  return (
+    <div className="App">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Enter the name: </label>
+        <br />
+        <input
+          type="text"
+          size="40"
+          id="name"
+          name="name"
+          value={inputValue}
+          onChange={handleChange}
+        />
+        <br />
+        {inputError && (
+          <div style={{ color: "red", fontSize: "15px" }}>{inputError}</div>
+        )}
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
