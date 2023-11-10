@@ -1,0 +1,16 @@
+import { useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [selectedOption, setSelectedOption] = useState(true);
+  const handleSelect = (e) => {
+    setSelectedOption(!selectedOption);
+    console.log(selectedOption)
+  };
+  return (
+    <div className="App">
+      <input type="checkbox" value={selectedOption} onChange={handleSelect}/>
+      <p>The Selected option is : {selectedOption ? "false" :"true"}</p>
+    </div>
+  );
+}
