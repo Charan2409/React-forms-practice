@@ -1,0 +1,35 @@
+import "./styles.css";
+import { useRef } from "react";
+
+export default function App() {
+  const userNameRef = useRef(null);
+  const selectRef = useRef(null);
+  const data = {
+    name: "",
+    selected: ""
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    data.name = userNameRef.current.value;
+    data.selected = selectRef.current.value;
+
+    console.log(data);
+  };
+
+  return (
+    <div className="App">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">
+          User name:
+          <input type="text" ref={userNameRef} />
+        </label>
+        <select ref={selectRef}>
+          <option value="option 1">option 1</option>
+          <option value="option 2">option 2</option>
+          <option value="option 3">option 3</option>
+        </select>
+        <button>submit</button>
+      </form>
+    </div>
+  );
+}
