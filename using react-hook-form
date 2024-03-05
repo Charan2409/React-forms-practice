@@ -1,0 +1,57 @@
+this form created using react-hook-form 
+// npm i react-hook-form - to install react hook form library
+
+code : 
+import "./styles.css";
+import { useForm } from "react-hook-form";
+
+export default function App() {
+
+//destructuring the keys[inbuilt functions] from useForm() hook.
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm(); 
+
+  const submitForm = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <div className="App">
+      <form onSubmit={handleSubmit(submitForm)}>
+        <label>Email</label>
+        <input
+          name="email"
+          {...register("email", {
+            required: true,
+            pattern: /^[^@ ]+@[^@ ]+.[^@ .]{2,}$/,
+          })}
+        />
+        {errors.email && errors.email.type === "pattern" && (
+          <p style={{ color: "red" }}>Please enter correct email address!</p>
+        )}
+        <br />
+        <br />
+        <label>Password</label>
+        <input
+          name="password"
+          {...register("password", {
+            required: true,
+            minLength: 6,
+          })}
+        />
+        {errors.password && errors.password.type === "minLength" && (
+          <p style={{ color: "red" }}>
+            Password should be at-least 6 characters.
+          </p>
+        )}
+        <br />
+        <button type="submit">submit</button>
+      </form>
+    </div>
+  );
+}
